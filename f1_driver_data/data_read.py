@@ -20,7 +20,7 @@ def read_all():
                 l[8]
             ))
     
-    return drivers
+    return drivers[1:]
 
 
 if __name__=="__main__":
