@@ -10,3 +10,17 @@ class Driver:
         self.wins = wins
         self.podiums = podiums
         pass
+
+
+    def get_dict(self):
+        return {
+            'name': self.name,
+            'nationality': self.nationality,
+            'seasons': self.seasons,
+            'championships': self.championships,
+            'entries': self.entries,
+            'starts': self.starts,
+            'poles': self.poles,
+            'wins': self.wins,
+            'podiums': self.podiums
+        }
