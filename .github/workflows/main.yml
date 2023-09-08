@@ -10,5 +10,5 @@ jobs:
     name: My Job
     runs-on: self-hosted
     steps:
-      - run: echo "Hello World!"
+      - run: docker run hello-world
         name: Basic output
