@@ -8,7 +8,7 @@ def create_app():
     def hello():
         return 'Hello, World!'
     
-    from . import driver
-    app.register_blueprint(driver.bp)
+    from . import driverBp
+    app.register_blueprint(driverBp.bp)
     
     return app

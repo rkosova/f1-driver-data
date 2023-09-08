@@ -3,11 +3,10 @@ import csv
 
 def read_all():
     drivers = []
-
-    with open('f1_driver_data/data/F1Drivers_Dataset.csv') as f:
+    with open('f1_driver_data/data/F1Drivers_Dataset.csv', encoding="utf-8") as f:
         reader = csv.reader(f, delimiter=',')
         for l in reader:
-    
+            print(l)
             drivers.append(Driver(
                 l[0],
                 l[1],
