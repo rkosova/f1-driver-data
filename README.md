@@ -8,11 +8,11 @@ Simple API for querying F1 driver data.
 
 - Gets all data
 
-`GET /driver/{driverfname}{driverlname}`
+`GET /driver/all?name=<Full Driver Name>`
 
 - Gets specified driver
 
-`GET /driver/top/{n}{parameter}`
+`GET /driver/
 
 - Gets top `n` drivers with respect to `parameter` (e.g., top 10 drivers with the most race wins)
 
