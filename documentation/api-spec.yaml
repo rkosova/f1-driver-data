@@ -1,0 +1,71 @@
+openapi: "3.0.2"
+info:
+  title: f1 driver data
+  description: Simple API for querying F1 driver data.
+  version: "1.0.0"
+servers:
+  - url: 'http://127.0.0.1:5000/driver'
+  
+paths:
+  /driver/all:
+    get:
+      summary: Get All Driver Data
+      description: Retrieves all available driver data.
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Driver'
+                  
+                  
+components:
+  schemas:
+    Driver:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The full name of the driver.
+          example: "Lewis Hamilton"
+        nationality:
+          type: string
+          description: The nationality of the driver.
+          example: "British"
+        seasons:
+          type: integer
+          description: The number of seasons the driver has participated in.
+          example: 15
+        championships:
+          type: integer
+          description: The number of F1 championships won by the driver.
+          example: 7
+        entries:
+          type: integer
+          description: The total number of race entries by the driver.
+          example: 250
+        starts:
+          type: integer
+          description: The total number of race starts by the driver.
+          example: 250
+        poles:
+          type: integer
+          description: The total number of pole positions achieved by the driver.
+          example: 101
+        wins:
+          type: integer
+          description: The total number of race wins by the driver.
+          example: 100
+        podiums:
+          type: integer
+          description: The total number of podium finishes by the driver.
+          example: 150
+
+
+
+
+
+
