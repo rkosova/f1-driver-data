@@ -8,7 +8,7 @@ Simple API for querying F1 driver data.
 
 - Gets all data
 
-    `GET /driver/all?rank=<Order>&category=<Category>&n=<Number of Drivers>`
+    `GET /driver/all?ranking=<Order>&category=<Category>&n=<Number of Drivers>`
 
     - Get filtered data
 
