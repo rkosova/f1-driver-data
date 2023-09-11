@@ -1,16 +1,28 @@
-openapi: "3.0.2"
+openapi: 3.0.0
 info:
-  title: f1 driver data
-  description: Simple API for querying F1 driver data.
-  version: "1.0.0"
-servers:
-  - url: 'http://127.0.0.1:5000/driver'
-  
+  title: F1 Driver API
+  description: API for retrieving F1 driver data
+  version: '1.0'
 paths:
   /driver/all:
     get:
-      summary: Get All Driver Data
-      description: Retrieves all available driver data.
+      summary: Get a list of F1 drivers
+      parameters:
+        - name: category
+          in: query
+          schema:
+            type: string
+          description: The category to filter by
+        - name: ranking
+          in: query
+          schema:
+            type: string
+          description: The ranking order ('top' or 'bottom')
+        - name: n
+          in: query
+          schema:
+            type: integer
+          description: The number of drivers to retrieve
       responses:
         '200':
           description: Successful response
@@ -20,8 +32,50 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Driver'
-                  
-                  
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+  /driver/{driver_name}:
+    get:
+      summary: Get a specific F1 driver by name
+      parameters:
+        - name: driver_name
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The name of the driver to retrieve
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Driver'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
 components:
   schemas:
     Driver:
@@ -63,9 +117,3 @@ components:
           type: integer
           description: The total number of podium finishes by the driver.
           example: 150
-
-
-
-
-
-
