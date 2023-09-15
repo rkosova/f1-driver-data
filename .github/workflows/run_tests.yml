@@ -15,7 +15,7 @@ jobs:
       
 
       - name: Build Docker image
-        run: docker build -t tests_container .
+        run: docker build -t tests_container tests/Dockertestfile
       
       - name: Run Docker container
         run: docker run tests_container
