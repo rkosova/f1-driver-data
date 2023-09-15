@@ -12,10 +12,9 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      
-
+        
       - name: Build Docker image
-        run: docker build -t tests_container tests/Dockertestfile
+        run: docker build -t tests_container tests/Dockerfile
       
       - name: Run Docker container
         run: docker run tests_container
