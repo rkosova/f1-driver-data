@@ -9,8 +9,6 @@ jobs:
   build:
     runs-on: kjel
 
-    container:
-      image: Dockerfile
 
     steps:
       - name: Checkout code
