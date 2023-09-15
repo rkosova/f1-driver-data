@@ -13,5 +13,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       
-      - name: Run tests
-        run: docker build -t tests_container . 
+
+      - name: Build Docker image
+        run: docker build -t tests_container .
+      
+      - name: Run Docker container
+        run: docker run tests_container
