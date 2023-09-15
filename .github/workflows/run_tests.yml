@@ -8,11 +8,10 @@ on:
 jobs:
   build:
     runs-on: kjel
-
-
+  
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
       
       - name: Run tests
-        run: docker run hello-world
+        run: docker build .
