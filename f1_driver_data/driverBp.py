@@ -15,7 +15,7 @@ def driver_all():
     if not request.args.get('category') and not request.args.get('ranking') and not request.args.get('n', type=int):
         return jsonify(dict_drivers)
 
-    # filter category
+    # filter by category
     if request.args.get('category') and request.args.get('ranking') and request.args.get('n', type=int):
         category = request.args.get('category')
         ranking = request.args.get('ranking')
