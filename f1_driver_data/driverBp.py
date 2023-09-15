@@ -25,7 +25,7 @@ def driver_all():
         if category not in dict_drivers[0]:
             return jsonify({'error': f'Category "{category}" does not exist'}), 400
         if category not in ["championships", "entries", "podiums", "poles", "starts", "wins"]:
-            return jsonify({'error': f'Only numeric categories are allowed'})
+            return jsonify({'error': f'Only numeric categories are allowed'}), 400
 
         # Sort by given category and rank by bottom or top
         if ranking == 'bottom':
