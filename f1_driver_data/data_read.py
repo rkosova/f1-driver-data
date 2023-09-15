@@ -5,8 +5,11 @@ def read_all():
     drivers = []
     with open('f1_driver_data/data/F1Drivers_Dataset.csv', encoding="utf-8") as f:
         reader = csv.reader(f, delimiter=',')
+
+        # skip first line with column names
+        next(reader, None)
+
         for l in reader:
-            print(l)
             drivers.append(Driver(
                 l[0],
                 l[1],
@@ -19,7 +22,7 @@ def read_all():
                 l[8]
             ))
     
-    return drivers[1:]
+    return drivers
 
 
 if __name__=="__main__":

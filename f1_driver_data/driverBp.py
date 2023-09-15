@@ -24,12 +24,14 @@ def driver_all():
         # check if category exists
         if category not in dict_drivers[0]:
             return jsonify({'error': f'Category "{category}" does not exist'}), 400
+        if category not in ["championships", "entries", "podiums", "poles", "starts", "wins"]:
+            return jsonify({'error': f'Only numeric categories are allowed'})
 
         # Sort by given category and rank by bottom or top
         if ranking == 'bottom':
-            dict_drivers.sort(key=lambda x: x[category])
+            dict_drivers.sort(key=lambda x: float(x[category]))
         elif ranking == 'top':
-            dict_drivers.sort(key=lambda x: x[category], reverse=True)
+            dict_drivers.sort(key=lambda x: float(x[category]), reverse=True)
         else:
             return jsonify({'error': 'Invalid value for "ranking". It should be "top" or "bottom"'}), 400
 
