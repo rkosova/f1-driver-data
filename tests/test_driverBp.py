@@ -1,5 +1,5 @@
 import pytest
-from f1_driver_data import create_app
+from f1_driver_data.__init__ import create_app
 
 @pytest.fixture()
 def app():
