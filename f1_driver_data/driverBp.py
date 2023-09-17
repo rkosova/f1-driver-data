@@ -41,7 +41,7 @@ def driver_all():
     else:
         return jsonify({'error': 'Both "n",  "category" and "ranking" are required query parameters'}), 400
 
-    return jsonify(dict_drivers)
+    return jsonify(dict_drivers), 200
 
 
 @bp.route('/<driver_name>', methods=['GET'])
@@ -53,4 +53,4 @@ def driver_by_name(driver_name):
     if not matching_drivers:
         return jsonify({'error': 'Driver not found'}), 404
 
-    return jsonify(matching_drivers[0])
+    return jsonify(matching_drivers[0]), 200
