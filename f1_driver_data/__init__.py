@@ -1,5 +1,4 @@
 from flask import Flask, jsonify, url_for
-import requests
 
 def create_app():
     app = Flask(__name__, instance_relative_config=True)
