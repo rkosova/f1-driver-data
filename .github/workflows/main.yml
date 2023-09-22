@@ -8,6 +8,8 @@ on:
 jobs:
   build:
     runs-on: kjel
+    env:
+      VERSION: '1.0'
 
     steps:
       - name: Checkout code
@@ -29,25 +31,18 @@ jobs:
         run: docker run --name build_container build_container_image
 
       - name: copy package to drive
-        run: docker cp build_container:/app/dist / 
+        run: docker cp build_container:/app/dist /home/svcgithub
 
       - name: rename package
-        run: mv /dist/* /dist/F1DriverData.whl
+        run: mv /home/svcgithub/dist/* /home/svcgithub/dist/F1DriverData.whl
 
-      - name: copy setup file
-        run: docker cp build_container:/app/setup.py .
-
-      - name: extract version from setup file
-        run: version=$(grep "version=" setup.py | awk -F"'" '{print $2}')
-    
       - name: build Docker run image
         run: docker build -t run_container_image -f run_container/DockerFile .
 
       - name: add tag to image
-        run: docker image tag run_container_image run_container_image:$version
+        run: docker image tag run_container_image run_container_image:$VERSION
 
       - name: push docker run image
-        run: docker push 10.0.40.160:5000/run_container:$version
-
+        run: docker push 10.0.40.160:5000/run_container:$VERSION
 
       
