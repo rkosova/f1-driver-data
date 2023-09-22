@@ -5,4 +5,4 @@ COPY ./requirements.txt .
 COPY ./setup.py .
 RUN pip install build
 RUN pip install -r requirements.txt
-RUN python3 -m build --wheel
+CMD ['python3', '-m', 'build', '--wheel']
