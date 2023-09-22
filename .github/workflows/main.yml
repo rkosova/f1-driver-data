@@ -40,9 +40,9 @@ jobs:
         run: docker build -t run_container_image -f run_container/Dockerfile .
 
       - name: add tag to image
-        run: docker image tag run_container_image run_container_image:$VERSION
+        run: docker tag run_container_image 10.0.40.160:5000/run_container_image:$VERSION
 
       - name: push docker run image
-        run: docker push run_container:$VERSION
+        run: docker push 10.0.40.160:5000/run_container_image:$VERSION
 
       
