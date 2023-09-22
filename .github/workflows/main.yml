@@ -12,12 +12,21 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+      
+      - name: cleaning containers
+        uses: docker container rm build_container
+
+      - name: cleaning images
+        uses: docker image rm build_container_image
+
+      - name: prune images
+        uses: docker image prune
 
       - name: Build Docker build image
-        run: docker build -t build_container .
+        run: docker build -t build_container_image .
 
       - name: Run Docker build image
-        run: docker run --name build_container build_container
+        run: docker run --name build_container build_container_image
 
       - name: copy package to drive
         run: docker cp build_container:/app/dist .
