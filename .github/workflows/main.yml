@@ -3,11 +3,11 @@ name: build and run containers
 on:
   push:
     branches:
-    - master
+    - '*'
 
 jobs:
   build:
-    runs-on: kjell
+    runs-on: kjel
 
     steps:
       - name: Checkout code
