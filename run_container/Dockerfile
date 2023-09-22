@@ -3,4 +3,4 @@ WORKDIR /app
 
 RUN pip install waitress
 COPY dist .
-RUN pip install F1DriverData.whl
+RUN pip install dist/F1DriverData.whl
