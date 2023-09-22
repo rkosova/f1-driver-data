@@ -40,7 +40,7 @@ jobs:
         run: mv /home/svcgithub/dist/* /home/svcgithub/dist/F1DriverData.whl
 
       - name: build Docker run image
-        run: docker build -t run_container_image -f run_container/DockerFile .
+        run: docker build -t run_container_image -f run_container/Dockerfile .
 
       - name: add tag to image
         run: docker image tag run_container_image run_container_image:$VERSION
