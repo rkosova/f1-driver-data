@@ -14,13 +14,13 @@ jobs:
         uses: actions/checkout@v2
       
       - name: cleaning containers
-        uses: docker container rm build_container
+        run: docker container rm build_container
 
       - name: cleaning images
-        uses: docker image rm build_container_image
+        run: docker image rm build_container_image
 
       - name: prune images
-        uses: docker image prune
+        run: docker image prune
 
       - name: Build Docker build image
         run: docker build -t build_container_image .
