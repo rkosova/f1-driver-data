@@ -36,9 +36,6 @@ jobs:
       - name: copy package to drive
         run: docker cp build_container:/app/dist .
 
-      - name: rename package
-        run: mv dist/* dist/F1DriverData.whl
-
       - name: build Docker run image
         run: docker build -t run_container_image -f run_container/Dockerfile .
 
