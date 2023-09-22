@@ -1,14 +1,35 @@
+name: build and run containers
+
 on:
   push:
     branches:
     - master
-    - release/*
-  workflow_dispatch:
 
 jobs:
-  my_job:
-    name: My Job
-    runs-on: self-hosted
+  build:
+    runs-on: kjell
+
     steps:
-      - run: docker run hello-world
-        name: Basic output
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Build Docker build image
+        run: docker build -t build_container .
+
+      - name: Run Docker build image
+        run: docker run --name build_container build_container
+
+      - name: copy package to drive
+        run: docker cp build_container:/app/dist .
+
+      - name: rename package
+        run: mv dist/* dist/F1DriverData.whl
+
+      - name: copy setup file
+        run: docker cp build_container:/app/setup.py
+
+      - name: extract version from setup file
+        run: version=$(grep "version=" setup.py | awk -F"'" '{print $2}')
+    
+
+      
