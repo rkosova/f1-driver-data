@@ -34,10 +34,10 @@ jobs:
         run: rm -rf /home/svcgithub/dist
 
       - name: copy package to drive
-        run: docker cp build_container:/app/dist /home/svcgithub
+        run: docker cp build_container:/app/dist .
 
       - name: rename package
-        run: mv /home/svcgithub/dist/* /home/svcgithub/dist/F1DriverData.whl
+        run: mv dist/* dist/F1DriverData.whl
 
       - name: build Docker run image
         run: docker build -t run_container_image -f run_container/Dockerfile .
