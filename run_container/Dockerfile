@@ -5,3 +5,5 @@ RUN pip install waitress
 COPY dist .
 RUN ls
 RUN pip install F1DriverData*.whl
+
+CMD ['waitress-serve', '--call', "'F1DriverData:create_app'"]
