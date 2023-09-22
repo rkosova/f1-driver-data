@@ -29,6 +29,9 @@ jobs:
 
       - name: Run Docker build image
         run: docker run --name build_container build_container_image
+      
+      - name: clear versions on drive
+        run: rm -rf /home/svcgithub/dist
 
       - name: copy package to drive
         run: docker cp build_container:/app/dist /home/svcgithub
