@@ -26,7 +26,7 @@ jobs:
         run: mv dist/* dist/F1DriverData.whl
 
       - name: copy setup file
-        run: docker cp build_container:/app/setup.py
+        run: docker cp build_container:/app/setup.py .
 
       - name: extract version from setup file
         run: version=$(grep "version=" setup.py | awk -F"'" '{print $2}')
