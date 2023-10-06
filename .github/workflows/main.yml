@@ -17,8 +17,7 @@ jobs:
 
       - name: Run build container
         run: 
-          docker create --name build_container app_build
-          docker start build_container
+          docker run --name build_container app_build
 
       - name: check build container
         run:
