@@ -16,12 +16,10 @@ jobs:
         run: docker rm build_container
 
       - name: Run build container
-        run: 
-          docker run --name build_container app_build
+        run: docker run --name build_container app_build
 
       - name: check build container
-        run:
-          ls build_container:/app/dist/
+        run: ls build_container:/app/
         
       - name: Extract build artifacts
         run:
