@@ -14,6 +14,7 @@ jobs:
 
       - name: Run build container
         run: 
+          docker rm $(docker ps -aq)
           docker create --name build_container app_build
           docker start build_container
         
