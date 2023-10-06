@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  my_job:
+  push_run_container:
     name: Push Run Container
     runs-on: self-hosted
     steps:
@@ -34,3 +34,10 @@ jobs:
          
       - name: Push to registry  
         run: docker image push 10.0.40.160:5000/run_image_f1_dd
+    
+  remote:
+    name: Remote Test
+    runs-on: self-hosted
+    steps:
+      - name: hello world
+        run: ssh fhvdevops@10.0.40.162 'echo "This is the run command"'
