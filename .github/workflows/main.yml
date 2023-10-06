@@ -10,10 +10,10 @@ jobs:
     runs-on: self-hosted
     steps:
       - name: Build Docker build image
-        run: docker build -t f1_driver_data .
+        run: docker build -t app_build .
 
       - name: Run build container and extract artifacts
-        run: docker run --name build_container f1_driver_data
+        run: docker run --name build_container app_build
           docker cp build_container:/app/build/ ./artifacts
           docker rm build_container
 
