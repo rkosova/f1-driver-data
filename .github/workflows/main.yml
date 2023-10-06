@@ -24,6 +24,9 @@ jobs:
       - name: Extract build artifacts from build container
         run: docker cp build_container:/app/dist/ ./artifacts
 
+      - name: check
+        run: ls ./artifacts
+
       - name: Build another Docker image with artifacts
         run: docker build -t run_image_f1_dd -f Dockerfile.run .
 
