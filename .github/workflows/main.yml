@@ -3,12 +3,13 @@ on:
     branches:
       - master
   workflow_dispatch:
-  
+
 jobs:
   my_job:
     name: Push Run Container
     runs-on: self-hosted
     steps:
+      - uses: actions/checkout@v4
       - name: Build Docker build image
         run: docker build -t app_build .
 
