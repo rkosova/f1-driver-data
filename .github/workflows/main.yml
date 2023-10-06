@@ -4,7 +4,7 @@ on:
       - master
       - release/*
   workflow_dispatch:
-
+jobs:
   my_job:
     name: Push Run Container
     runs-on: self-hosted
