@@ -17,14 +17,12 @@ jobs:
 
       - name: Run build container
         run: docker run --name build_container app_build
-
-      - name: check build container
-        run: ls build_container:/app
         
-      - name: Extract build artifacts
-        run:
-          mkdir -p ./artifacts
-          docker cp build_container:/app/dist/ ./artifacts
+      - name: Make local build artifacts folder
+        run: mkdir -p ./artifacts
+
+      - name: Extract build artifacts from build container
+        run: docker cp build_container:/app/dist/* ./artifacts
 
       - name: Build another Docker image with artifacts
         run: docker build -t run_image_f1_dd -f Dockerfile.run .
