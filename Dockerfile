@@ -6,3 +6,4 @@ COPY ./setup.py .
 RUN pip install build
 RUN pip install -r requirements.txt
 CMD ["python3", "-m", "build", "--wheel"]
+RUN ls .
