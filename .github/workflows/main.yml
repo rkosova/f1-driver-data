@@ -27,6 +27,7 @@ jobs:
       - name: Build another Docker image with artifacts
         run: docker build -t run_image_f1_dd -f Dockerfile.run .
 
+
       - name: Tag image with registry host
         run: docker image tag run_image_f1_dd 10.0.40.160:5000/run_image_f1_dd
          
