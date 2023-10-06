@@ -31,5 +31,5 @@ on:
 
       - name: Push run image to registry
         run: 
-        docker image tag run_image_f1_dd 10.0.40.160:5000/run_image_f1_dd
-        docker image push 10.40.160:5000/run_image_f1_dd
+          docker image tag run_image_f1_dd 10.0.40.160:5000/run_image_f1_dd
+          docker image push 10.40.160:5000/run_image_f1_dd
