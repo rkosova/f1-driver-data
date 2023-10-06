@@ -1,17 +1,9 @@
 on:
   push:
     branches:
-    - master
-    - release/*
+      - master
+      - release/*
   workflow_dispatch:
-
-on:
-  push:
-    branches:
-    - master
-    - release/*
-  workflow_dispatch:
-
 
   push_run_container:
     name: Push Run Container
@@ -19,10 +11,9 @@ on:
     steps:
       - name: Build Docker build image
         run: docker build -t f1_driver_data .
-      
+
       - name: Run build container and extract artifacts
-        run:
-          docker run --name build_container f1_driver_data
+        run: docker run --name build_container f1_driver_data
           docker cp build_container:/app/build/ ./artifacts
           docker rm build_container
 
@@ -30,6 +21,5 @@ on:
         run: docker build -t run_image_f1_dd -f Dockerfile.run .
 
       - name: Push run image to registry
-        run: 
-          docker image tag run_image_f1_dd 10.0.40.160:5000/run_image_f1_dd
-          docker image push 10.40.160:5000/run_image_f1_dd
+        run: docker image tag run_image_f1_dd 10.0.40.160:5000/run_image_f1_dd
+          docker image push 10.0.40.160:5000/run_image_f1_dd
