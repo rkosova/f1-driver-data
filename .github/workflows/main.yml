@@ -12,9 +12,14 @@ jobs:
       - name: Build Docker build image
         run: docker build -t app_build .
 
-      - name: Run build container and extract artifacts
+      - name: Run build container
         run: 
-          docker run --name build_container -v /var/run/docker.sock:/var/run/docker.sock app_build
+          docker create --name build_container app_build
+          docker start build_container
+        
+      - name: Extract build artifacts and cleanup
+        run:
+          mkdir -p ./artifacts
           docker cp build_container:/app/build/ ./artifacts
           docker rm build_container
 
