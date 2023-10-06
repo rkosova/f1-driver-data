@@ -5,7 +5,7 @@ PORT="5000"
 
 IMAGE_NAME="run_image_f1_dd"
 
-FULL_IMAGE_REF="${REGISTRY_IP}:${REGISTRY_PORT}/${IMAGE_NAME}:latest"
+FULL_IMAGE_REF="${REGISTRY_IP}:${PORT}/${IMAGE_NAME}:latest"
 
 echo "Pulling docker image: "
 docker pull "$FULL_IMAGE_REF"
