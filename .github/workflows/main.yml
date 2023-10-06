@@ -14,7 +14,7 @@ jobs:
 
       - name: Run build container
         run: 
-          docker rm $(docker ps -aq)
+          docker rm build_container
           docker create --name build_container app_build
           docker start build_container
         
@@ -22,7 +22,6 @@ jobs:
         run:
           mkdir -p ./artifacts
           docker cp build_container:/app/build/ ./artifacts
-          docker rm build_container
 
       - name: Build another Docker image with artifacts
         run: docker build -t run_image_f1_dd -f Dockerfile.run .
