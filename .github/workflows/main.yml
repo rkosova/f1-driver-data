@@ -12,13 +12,16 @@ jobs:
       - name: Build Docker build image
         run: docker build -t app_build .
 
+      - name: Remove docker container
+        run: docker rm build_container
+
+
       - name: Run build container
         run: 
-          docker rm build_container
           docker create --name build_container app_build
           docker start build_container
         
-      - name: Extract build artifacts and cleanup
+      - name: Extract build artifacts
         run:
           mkdir -p ./artifacts
           docker cp build_container:/app/build/ ./artifacts
