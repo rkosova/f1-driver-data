@@ -38,6 +38,7 @@ jobs:
   remote:
     name: Remote Test
     runs-on: self-hosted
+    needs: push_run_container
     steps:
-      - name: hello world
-        run: ssh fhvdevops@10.0.40.162 'echo "This is the run command"'
+      - name: Running remoterun.sh
+        run: ssh fhvdevops@10.0.40.162 'bash -s' < ../remoterun.sh
