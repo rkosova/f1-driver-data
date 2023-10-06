@@ -15,7 +15,6 @@ jobs:
       - name: Remove docker container
         run: docker rm build_container
 
-
       - name: Run build container
         run: 
           docker create --name build_container app_build
