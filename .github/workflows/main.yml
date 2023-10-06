@@ -25,7 +25,6 @@ jobs:
         run:
           mkdir -p ./artifacts
           docker cp build_container:/app/dist/ ./artifacts
-          ls /artifacts
 
       - name: Build another Docker image with artifacts
         run: docker build -t run_image_f1_dd -f Dockerfile.run .
