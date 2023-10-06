@@ -5,10 +5,31 @@ on:
     - release/*
   workflow_dispatch:
 
-jobs:
-  my_job:
-    name: My Job
+on:
+  push:
+    branches:
+    - master
+    - release/*
+  workflow_dispatch:
+
+
+  push_run_container:
+    name: Push Run Container
     runs-on: self-hosted
     steps:
-      - run: docker run hello-world
-        name: Basic output
+      - name: Build Docker build image
+        run: docker build -t f1_driver_data .
+      
+      - name: Run build container and extract artifacts
+        run:
+          docker run --name build_container f1_driver_data
+          docker cp build_container:/app/build/ ./artifacts
+          docker rm build_container
+
+      - name: Build another Docker image with artifacts
+        run: docker build -t run_image_f1_dd -f Dockerfile.run .
+
+      - name: Push run image to registry
+        run: 
+        docker image tag run_image_f1_dd 10.0.40.160:5000/run_image_f1_dd
+        docker image push 10.40.160:5000/run_image_f1_dd
