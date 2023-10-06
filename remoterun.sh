@@ -14,7 +14,7 @@ docker pull "$FULL_IMAGE_REF"
 if [ $? -eq 0 ]; then
   echo "Image successfully pulled: $FULL_IMAGE_REF"
   NAME="F1DriverData_test"
-  docker run --name "$NAME" -d "$FULL_IMAGE_REF" 
+  docker run --name "$NAME" -p 9001:5000 -d "$FULL_IMAGE_REF" 
 else
   echo "Failed to pull the image: $FULL_IMAGE_REF"
   exit 1
