@@ -19,11 +19,14 @@ jobs:
         run: 
           docker create --name build_container app_build
           docker start build_container
+
+      - name: check build container
+        run:
+          ls build_container:/app/dist/
         
       - name: Extract build artifacts
         run:
           mkdir -p ./artifacts
-          ls build_container:/app/dist
           docker cp build_container:/app/dist/* ./artifacts
 
       - name: Build another Docker image with artifacts
