@@ -24,12 +24,11 @@ jobs:
       - name: Extract build artifacts from build container
         run: docker cp build_container:/app/dist/ ./artifacts
 
-      - name: check
-        run: ls ./artifacts
-
       - name: Build another Docker image with artifacts
         run: docker build -t run_image_f1_dd -f Dockerfile.run .
 
-      - name: Push run image to registry
+      - name: Tag image with registry host
         run: docker image tag run_image_f1_dd 10.0.40.160:5000/run_image_f1_dd
-          docker image push 10.0.40.160:5000/run_image_f1_dd
+         
+      - name: Push to registry  
+        run: docker image push 10.0.40.160:5000/run_image_f1_dd
