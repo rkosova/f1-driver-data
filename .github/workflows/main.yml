@@ -26,7 +26,7 @@ jobs:
         run: docker cp build_container:/app/dist/ ./artifacts
 
       - name: Move app_deploy.sh
-        run: cp build_container:/app/app_deploy.sh ./artifacts
+        run: docker cp build_container:/app/app_deploy.sh ./artifacts
 
       - name: Build another Docker image with artifacts
         run: docker build -t run_image_f1_dd -f Dockerfile.run .
