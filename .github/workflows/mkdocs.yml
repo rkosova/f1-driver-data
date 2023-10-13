@@ -20,9 +20,9 @@ jobs:
         run: docker rm mkdocs_container || true 
 
       - name: Run Docker container
-        run: docker run --name mdocs_container mkdocs_image
+        run: docker run --name mkdocs_container mkdocs_image
 
       - name: Extract website
-        run: docker cp mcdocs_container:app/site/ ./website
+        run: docker cp mkdocs_container:app/site/ ./website
 
  
