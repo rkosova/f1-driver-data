@@ -3,7 +3,7 @@ WORKDIR /app
 COPY ./artifacts/dist/ .
 RUN ls .
 RUN pip install ./F1DriverData-0.1-py3-none-any.whl
-RUN pip install waitress
+RUN pip install gunicorn
 RUN pip install flask
 RUN pip list
-CMD ["waitress-serve", "--call", "'f1_driver_data:create_app'"]
+CMD ["gunicorn", "f1_driver_data:create_app", "--bind", "0.0.0.0:8080"]
