@@ -12,5 +12,5 @@ on:
     steps: 
       - uses: actions/checkout@v4
       - name: Build Docker image
-        run: docker build -t mkdocs_build -f mkdoc_documentation/Dockerfile .
+        run: docker build -t mkdocs_build -f mkdocs_documentation/Dockerfile .
 
