@@ -2,6 +2,5 @@ FROM python:3.8
 WORKDIR /app
 COPY ./artifacts/dist/ .
 COPY ./artifacts/app_deploy.sh .
-RUN pip install F1DriverData-0.1-py3-none-any.whl gunicorn flask
-RUN pip show F1DriverData
+RUN chmod +x app_deploy.sh
 CMD ["./app_deploy.sh"]
