@@ -25,4 +25,6 @@ jobs:
       - name: Extract website
         run: docker cp mkdocs_container:app/site/ ./website
 
+      - name: Push website to server
+        run: scp ./website fhvdevops@10.0.40.161var/www/html/2
  
