@@ -1,1 +1,15 @@
+on:
+  push:
+    branches:
+      - master
+      - create-mkdocs-pipeline
+  workflow_dispatch:
 
+  jobs:
+    make_mkdocs:
+      name: make mkdocs
+      runs-on: self-hosted
+    steps: 
+      - uses: actions/checkout@v4
+      - name: Build Docker image
+        run: docker build -t mkdocs_build 
