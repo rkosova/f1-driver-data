@@ -28,6 +28,9 @@ jobs:
       - name: Move app_deploy.sh
         run: docker cp build_container:/app/app_deploy.sh ./artifacts
 
+      - name: Move reqs
+        run: docker cp build_container:/app/requirements.txt ./artifacts
+
       - name: Build another Docker image with artifacts
         run: docker build -t run_image_f1_dd -f Dockerfile.run .
 

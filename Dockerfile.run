@@ -2,5 +2,6 @@ FROM python:3.8
 WORKDIR /app
 COPY ./artifacts/dist/ .
 COPY ./artifacts/app_deploy.sh .
+COPY ./artifacts/requirements.txt .
 RUN chmod +x app_deploy.sh
 CMD ["./app_deploy.sh"]
