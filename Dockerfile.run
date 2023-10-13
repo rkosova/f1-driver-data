@@ -6,4 +6,5 @@ RUN pip install F1DriverData-0.1-py3-none-any.whl
 RUN pip install gunicorn
 RUN pip install flask
 RUN pip show F1DriverData
-CMD ["gunicorn", "f1_driver_data:create_app", "--bind", "0.0.0.0:8080"]
+CMD ["pip", "list"]
+# CMD ["gunicorn", "f1_driver_data:create_app", "--bind", "0.0.0.0:8080"]
