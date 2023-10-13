@@ -8,7 +8,8 @@ pip install waitress
 pip install flask
 
 pip show F1DriverData
-python -c "import f1_driver_data"
+python -c "import f1_driver_data
+print(dir(f1_driver_data))"
 
 
 waitress-serve --call f1_driver_data:create_app
