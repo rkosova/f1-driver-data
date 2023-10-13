@@ -1,9 +1,7 @@
-FROM python:3.10-slim
+FROM python:3.8
 WORKDIR /app
 COPY ./artifacts/dist/ .
 RUN ls .
-RUN pip install F1DriverData-0.1-py3-none-any.whl
-RUN pip install gunicorn
-RUN pip install flask
+RUN pip install F1DriverData-0.1-py3-none-any.whl gunicorn flask
 RUN pip show F1DriverData
 CMD ["python", "-m", "gunicorn", "--pythonpath", ".", "f1_driver_data:create_app", "--bind", "0.0.0.0:8080"]
