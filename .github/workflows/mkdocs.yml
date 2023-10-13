@@ -14,8 +14,15 @@ jobs:
       - uses: actions/checkout@v4
       
       - name: Build Docker image
-        run: docker build -t mkdocs_container -f mkdocs_documentation/Dockerfile .
+        run: docker build -t mkdocs_image -f mkdocs_documentation/Dockerfile .
+
+      - name: Remove docker container
+        run: docker rm mkdocs_container
 
       - name: Run Docker container
-        run: docker run mkdocs_container
+        run: docker run --name mdocs_container mkdocs_image
 
+      - name: Extract website
+        run: docker cp mcdocs_container:app/site/ ./website
+
+ 
