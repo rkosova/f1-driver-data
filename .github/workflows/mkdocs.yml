@@ -26,11 +26,13 @@ jobs:
         run: docker cp mkdocs_container:app/site/ ./website
 
       - name: set ssh keys
-        run: ssh-keyscan 10.0.40.161 > tmpknownhosts           
-             ssh UserKnownHostsFile=tmpknownhosts fhvdevops@10.0.40.161 "rm -r /var/www/html/2"
+        run: | 
+          ssh-keyscan 10.0.40.161 > tmpknownhosts           
+          ssh UserKnownHostsFile=tmpknownhosts fhvdevops@10.0.40.161 "rm -r /var/www/html/2"
             
 
       - name: Push website to server
-        run: scp -o UserKnownHostsFile=tmpknownhosts -r ./site fhvdevops@10.0.40.161:/var/www/html/2           
-             rm tmpknownhosts
+        run: |
+          scp -o UserKnownHostsFile=tmpknownhosts -r ./site fhvdevops@10.0.40.161:/var/www/html/2           
+          rm tmpknownhosts
  
