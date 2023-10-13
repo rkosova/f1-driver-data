@@ -1,4 +1,7 @@
 #!/bin/bash
+python -m venv venv
+. ./venv/bin/activate
+
 pip install F1DriverData-0.1-py3-none-any.whl
 pip install gunicorn
 pip install flask
