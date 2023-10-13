@@ -1,6 +1,6 @@
 #!/bin/bash
 python -m venv venv
-. ./venv/bin/activate
+source ./venv/bin/activate
 ls
 pip install F1DriverData-0.1-py3-none-any.whl
 pip install waitress
