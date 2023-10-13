@@ -1,8 +1,8 @@
 FROM python:3.10-slim
 WORKDIR /app
-COPY ./artifacts/dist/ .
+COPY ./artifacts/ .
 RUN ls .
-RUN pip install ./F1DriverData-0.1-py3-none-any.whl
+RUN pip install ./dist/F1DriverData-0.1-py3-none-any.whl
 RUN pip install waitress
 RUN pip install flask
 RUN pip list
