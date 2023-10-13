@@ -28,7 +28,7 @@ jobs:
       - name: set ssh keys
         run: | 
           ssh-keyscan 10.0.40.161 > tmpknownhosts           
-          ssh UserKnownHostsFile=tmpknownhosts fhvdevops@10.0.40.161 "rm -r /var/www/html/2"
+          ssh -o UserKnownHostsFile=tmpknownhosts fhvdevops@10.0.40.161 "rm -r /var/www/html/2"
             
 
       - name: Push website to server
