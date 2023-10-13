@@ -17,7 +17,7 @@ jobs:
         run: docker build -t mkdocs_image -f mkdocs_documentation/Dockerfile .
 
       - name: Remove docker container
-        run: docker rm mkdocs_container
+        run: docker rm mkdocs_container || true 
 
       - name: Run Docker container
         run: docker run --name mdocs_container mkdocs_image
