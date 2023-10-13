@@ -33,6 +33,6 @@ jobs:
 
       - name: Push website to server
         run: |
-          scp -o UserKnownHostsFile=tmpknownhosts -r ./site fhvdevops@10.0.40.161:/var/www/html/2           
+          scp -o UserKnownHostsFile=tmpknownhosts -r ./website fhvdevops@10.0.40.161:/var/www/html/2           
           rm tmpknownhosts
  
