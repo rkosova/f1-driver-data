@@ -6,4 +6,4 @@ RUN pip install ./F1DriverData-0.1-py3-none-any.whl
 RUN pip install waitress
 RUN pip install flask
 RUN pip list
-CMD ["waitress-serve", "--call", '"f1_driver_data:create_app"']
+CMD ["waitress-serve", "--call", "'f1_driver_data:create_app'"]
