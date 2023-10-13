@@ -4,4 +4,4 @@ COPY ./artifacts/dist/ .
 RUN ls .
 RUN pip install F1DriverData-0.1-py3-none-any.whl gunicorn flask
 RUN pip show F1DriverData
-CMD ["cd", "/app", "&&", "gunicorn", "f1_driver_data:create_app", "--bind", "0.0.0.0:8080"]
+CMD ["gunicorn", "app/f1_driver_data:create_app", "--bind", "0.0.0.0:8080"]
