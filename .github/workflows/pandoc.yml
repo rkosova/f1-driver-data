@@ -8,3 +8,10 @@ on:
 jobs:
   make_pandoc:
     runs-on: self-hosted
+
+    steps: 
+      - uses: actions/checkout@v4
+
+      - name: something
+        run: ls
+      
