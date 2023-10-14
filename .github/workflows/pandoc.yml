@@ -1,0 +1,10 @@
+name: Create pandocs pdf
+
+on:
+  push:
+    branches:
+      - '*'
+
+jobs:
+  make_pandoc:
+    runs-on: self-hosted
