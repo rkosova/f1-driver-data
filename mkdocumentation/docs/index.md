@@ -1,17 +1,12 @@
-# Welcome to MkDocs
+Endpoints
+GET /driver/all
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+Gets all data
 
-## Commands
+GET /driver/all?ranking=<Order>&category=<Category>&n=<Number of Drivers>
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
+Get filtered data
+GET /driver/<Full Driver Name>
 
-## Project layout
+Gets specified driver
 
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
