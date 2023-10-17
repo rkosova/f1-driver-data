@@ -1,12 +1,14 @@
 from flask import Flask, jsonify, url_for
+from flask_apispec import FlaskApiSpec
 
 def create_app():
     app = Flask(__name__, instance_relative_config=True)
-
+    docs = FlaskApiSpec(app)
 
     @app.route("/hello")
     def hello():
         return 'Hello, World!'
+    docs.register(hello)
     
     from . import driverBp
     app.register_blueprint(driverBp.bp)
@@ -21,5 +23,8 @@ def create_app():
 
 
         return jsonify({"status" : status, "all": all, "driver_name": dname}), 200
+    docs.register(health())
     
+
+
     return app
