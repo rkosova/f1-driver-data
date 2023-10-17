@@ -7,8 +7,7 @@ on:
 
 jobs:
   make_pandoc:
-    runs-on: kjellrunner
-
+    runs-on: ron-manj
     steps: 
       - uses: actions/checkout@v4
 
