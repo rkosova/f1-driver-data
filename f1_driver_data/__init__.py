@@ -23,8 +23,6 @@ def create_app():
 
 
         return jsonify({"status" : status, "all": all, "driver_name": dname}), 200
-    docs.register(health())
+    docs.register(health)
     
-
-
     return app
