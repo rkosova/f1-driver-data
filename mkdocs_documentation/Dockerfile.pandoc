@@ -7,5 +7,8 @@ WORKDIR /data
 # Copy your Markdown files into the container
 COPY . /mkdocs_documentation 
 
+RUN if [ $(uname) = "Linux" ]; then pip install --no-cache-dir -r requirements-linux.txt; else pip install --no-cache-dir -r requirements-windows.txt; fi
+
+
 # Command to run Pandoc and convert the Markdown to PDF
 CMD ["pandoc", "index.md", "-o", "output.pdf"]
