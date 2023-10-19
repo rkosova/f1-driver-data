@@ -5,7 +5,7 @@ FROM pandoc/latex:latest
 WORKDIR /data
 
 # Copy your Markdown files into the container
-COPY . /mkdocs_documentation 
+COPY . /mkdocs_documentation.
 
 RUN if [ $(uname) = "Linux" ]; then pip install --no-cache-dir -r requirements-linux.txt; else pip install --no-cache-dir -r requirements-windows.txt; fi
 
