@@ -1,0 +1,11 @@
+# Use a base image with Pandoc and LaTeX
+FROM pandoc/latex:latest
+
+# Set the working directory inside the container
+WORKDIR /data
+
+# Copy your Markdown files into the container
+COPY . /mkdocs_documentation 
+
+# Command to run Pandoc and convert the Markdown to PDF
+CMD ["pandoc", "index.md", "-o", "output.pdf"]
