@@ -1,14 +1,27 @@
-# Use a base image with Pandoc and LaTeX
-FROM pandoc/latex:latest
+# Use a base image that supports both Python and document conversion (e.g., python:3.10-slim)
+FROM python:3.10-slim
 
-# Set the working directory inside the container
+# Set the working directory for your Python application
+WORKDIR /app
+
+# Copy your Python application code
+COPY . .
+
+# Install Python dependencies for the application, including conditional installation of pywin32
+RUN if [ "$(uname -s)" = "Linux" ]; then \
+    pip install --no-cache-dir -r requirements-linux.txt; \
+    else \
+    echo "Running on Windows, skipping pywin32 installation"; \
+    fi
+
+# Change the working directory for document conversion
 WORKDIR /data
 
 # Copy your Markdown files into the container
-COPY . /mkdocs_documentation.
+COPY . /mkdocs_documentation
 
-RUN if [ $(uname) = "Linux" ]; then pip install --no-cache-dir -r requirements-linux.txt; else pip install --no-cache-dir -r requirements-windows.txt; fi
-
+# Install additional dependencies required for document conversion
+RUN apt-get update && apt-get install -y pandoc
 
 # Command to run Pandoc and convert the Markdown to PDF
 CMD ["pandoc", "index.md", "-o", "output.pdf"]
