@@ -15,7 +15,7 @@ jobs:
         run: docker pull pandoc/latex
 
       - name: create pdf from index.md
-        run:  docker run --rm \ --volume "$(pwd):/data" \ --user $(id -u):$(id -g) \ pandoc/latex ./mkdocs_documentation/docs/index.md -o index.pdf
+        run:  docker run --rm --volume "$(pwd):/data" --user $(id -u):$(id -g) pandoc/latex ./mkdocs_documentation/docs/index.md -o index.pdf
 
       - name: test
         run: ls
