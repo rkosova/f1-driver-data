@@ -1,48 +1,50 @@
-name: build and run containers
-
 on:
   push:
     branches:
-    - '*'
+      - master
+  workflow_dispatch:
 
 jobs:
-  build:
-    runs-on: kjel
-    env:
-      VERSION: '1.0'
-
+  push_run_container:
+    name: Push Run Container
+    runs-on: self-hosted
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-      
-      - name: cleaning containers
-        run: docker container rm -f build_container
-
-      - name: cleaning images
-        run: docker image rm -f build_container_image
-
-      - name: prune images
-        run: docker image prune
-
+      - uses: actions/checkout@v4
       - name: Build Docker build image
-        run: docker build -t build_container_image .
+        run: docker build -t app_build .
 
-      - name: Run Docker build image
-        run: docker run --name build_container build_container_image
-      
-      - name: clear versions on drive
-        run: rm -rf /home/svcgithub/dist
+      - name: Remove docker container
+        run: docker rm build_container
 
-      - name: copy package to drive
-        run: docker cp build_container:/app/dist .
+      - name: Run build container
+        run: docker run --name build_container app_build
+        
+      - name: Make local build artifacts folder
+        run: mkdir -p ./artifacts
 
-      - name: build Docker run image
-        run: docker build -t run_container_image -f run_container/Dockerfile .
+      - name: Extract build artifacts from build container
+        run: docker cp build_container:/app/dist/ ./artifacts
 
-      - name: add tag to image
-        run: docker tag run_container_image 10.0.40.160:5000/run_container_image:$VERSION
+      - name: Move app_deploy.sh
+        run: docker cp build_container:/app/app_deploy.sh ./artifacts
 
-      - name: push docker run image
-        run: docker push 10.0.40.160:5000/run_container_image:$VERSION
+      - name: Move reqs
+        run: docker cp build_container:/app/requirements.txt ./artifacts
 
-      
+      - name: Build another Docker image with artifacts
+        run: docker build -t run_image_f1_dd -f Dockerfile.run .
+
+
+      - name: Tag image with registry host
+        run: docker image tag run_image_f1_dd 10.0.40.160:5000/run_image_f1_dd
+         
+      - name: Push to registry  
+        run: docker image push 10.0.40.160:5000/run_image_f1_dd
+    
+  remote:
+    name: Remote Test
+    runs-on: self-hosted
+    needs: push_run_container
+    steps:
+      - name: Running remoterun.sh
+        run: ssh fhvdevops@10.0.40.162 'bash -s' < remoterun.sh

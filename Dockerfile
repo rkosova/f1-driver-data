@@ -3,6 +3,7 @@ WORKDIR /app
 COPY ./f1_driver_data .
 COPY ./requirements.txt .
 COPY ./setup.py .
+COPY ./app_deploy.sh .
 RUN pip install build
 RUN pip install -r requirements.txt
-RUN python3 -m build --wheel
+CMD ["python", "-m", "build", "--wheel"]
