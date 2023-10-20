@@ -19,6 +19,6 @@ jobs:
 
       - name: run sonar scanner
         run:  | 
-          projPath=${pwd}
-          docker run --rm -e SONAR_HOST_URL="http://10.0.40.161:9000" -e SONAR_SCANNER_OPTS="-Dsonar.projectKey=team2" -e SONAR_TOKEN="sqp_729ba7be78e2daa8b9800ad096a37ca178b1a283" -v "$projPath:/usr/src" sonarsource/sonar-scanner-cli
+          projPath=$(pwd)
+          docker run --rm -e SONAR_HOST_URL="http://10.0.40.161:9000" -e SONAR_SCANNER_OPTS="-Dsonar.projectKey=team2" -e SONAR_TOKEN="sqp_729ba7be78e2daa8b9800ad096a37ca178b1a283" -v "${projPath}:/usr/src" sonarsource/sonar-scanner-cli
           
