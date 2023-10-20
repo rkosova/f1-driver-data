@@ -11,29 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Build Docker build image
-        run: docker build -t app_build .
-
-      - name: Remove docker container
-        run: docker rm build_container
-
-      - name: Run build container
-        run: docker run --name build_container app_build
-        
-      - name: Make local build artifacts folder
-        run: mkdir -p ./artifacts
-
-      - name: Extract build artifacts from build container
-        run: docker cp build_container:/app/dist/ ./artifacts
-
-      - name: Move app_deploy.sh
-        run: docker cp build_container:/app/app_deploy.sh ./artifacts
-
-      - name: Move reqs
-        run: docker cp build_container:/app/requirements.txt ./artifacts
-
-      - name: Build another Docker image with artifacts
-        run: docker build -t run_image_f1_dd -f Dockerfile.run .
-
+        run: docker build -t run_image_f1_dd .
 
       - name: Tag image with registry host
         run: docker image tag run_image_f1_dd 10.0.40.160:5000/run_image_f1_dd
@@ -42,7 +20,7 @@ jobs:
         run: docker image push 10.0.40.160:5000/run_image_f1_dd
     
   remote:
-    name: Remote Test
+    name: Remote Run
     runs-on: self-hosted
     needs: push_run_container
     steps:
