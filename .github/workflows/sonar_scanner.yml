@@ -1,4 +1,4 @@
- name: Run Sonar scanner
+name: Run Sonar scanner
 
 on:
   push:
