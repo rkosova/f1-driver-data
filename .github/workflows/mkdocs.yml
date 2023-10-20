@@ -3,8 +3,7 @@ name: Create mkdocs
 on:
   push:
     branches:
-      - master
-      - create-mkdocs-pipeline
+      - '*'
 
 jobs:
   make_mkdocs:

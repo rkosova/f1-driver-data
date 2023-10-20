@@ -1,18 +1,17 @@
-# Welcome to MkDocs
+# F1 DRIVER DATA
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+Simple API for querying F1 driver data.
 
-## Commands
+## Endpoints
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
-* Yo mama thicc
+`GET /driver/all`
 
-## Project layout
+- Gets all data
 
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+    `GET /driver/all?ranking=<Order>&category=<Category>&n=<Number of Drivers>`
+
+    - Get filtered data
+
+`GET /driver/<Full Driver Name>`
+
+- Gets specified driver
