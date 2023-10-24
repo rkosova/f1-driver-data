@@ -19,10 +19,19 @@ jobs:
       - name: Push to registry  
         run: docker image push 10.0.40.160:5000/run_image_f1_dd
     
-  remote:
-    name: Remote Run
+  remote_test:
+    name: Remote Test
     runs-on: self-hosted
     needs: push_run_container
     steps:
+      - name: Running remotetest.sh
+        run: ssh fhvdevops@10.0.40.162 'bash -s' < remotetest.sh
+
+  remote_run:
+    name: Remote Run
+    runs-on: self-hosted
+    needs: remote_test
+    steps:
       - name: Running remoterun.sh
         run: ssh fhvdevops@10.0.40.162 'bash -s' < remoterun.sh
+    
