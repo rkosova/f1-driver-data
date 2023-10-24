@@ -12,7 +12,7 @@ docker pull "$FULL_IMAGE_REF"
 if [ $? -eq 0 ]; then
   echo "Image successfully pulled: $FULL_IMAGE_REF"
   NAME="F1DriverData_test"
-  doker run --name "$NAME" -p 9002:8080 -d "$FULL_IMAGE_REF"
+  docker run --name "$NAME" -p 9002:8080 -d "$FULL_IMAGE_REF"
 
   api_response = $(curl -s "${REGISTRY_IP}:9001/driver/Max%20Verstappen")
 
