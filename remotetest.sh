@@ -14,9 +14,9 @@ if [ $? -eq 0 ]; then
   NAME="F1DriverData_test"
   docker run --name "$NAME" -p 9002:8080 -d "$FULL_IMAGE_REF"
 
-  api_response = $(curl -s "${REGISTRY_IP}:9001/driver/Max%20Verstappen")
+  api_response=$(curl -s "${REGISTRY_IP}:9001/driver/Max%20Verstappen")
 
-  expected_json = '{
+  expected_json='{
     "championships": "2.0",
     "entries": "164.0",
     "name": "Max Verstappen",
@@ -28,12 +28,15 @@ if [ $? -eq 0 ]; then
     "wins": "36.0"
   }'
 
-  if [ "$api_response" = "$expected_json" ]; then
+  if [ "$api_response"=="$expected_json" ]; then
     echo "Integration test passed. JSON response matches the expected."
     docker stop "$NAME"
+    docker rm "$NAME"
     exit 0
   else
     echo "Integration test failed. JSON response doesn't match the expected."
+    docker stop "$NAME"
+    docker rm "$NAME"
     exit 1
   fi
 else
