@@ -12,6 +12,8 @@ docker pull "$FULL_IMAGE_REF"
 if [ $? -eq 0 ]; then
   echo "Image successfully pulled: $FULL_IMAGE_REF"
   NAME="F1DriverData_test"
+  docker stop "$NAME"
+  docker rm "$NAME"
   docker run --name "$NAME" -p 9002:8080 -d "$FULL_IMAGE_REF"
 
   api_response=$(curl -s "${REGISTRY_IP}:9001/driver/Max%20Verstappen")
@@ -30,13 +32,9 @@ if [ $? -eq 0 ]; then
 
   if [ "$api_response"=="$expected_json" ]; then
     echo "Integration test passed. JSON response matches the expected."
-    docker stop "$NAME"
-    docker rm "$NAME"
     exit 0
   else
     echo "Integration test failed. JSON response doesn't match the expected."
-    docker stop "$NAME"
-    docker rm "$NAME"
     exit 1
   fi
 else
