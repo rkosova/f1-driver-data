@@ -16,7 +16,10 @@ jobs:
 
       - name: create pdf from index.md
         run:  docker run --rm --volume "$(pwd):/data" --user $(id -u):$(id -g) pandoc/latex ./mkdocs_documentation/docs/index.md -o documentation.pdf
-            
+
+      - name: set ssh keys
+        run: ssh-keyscan 10.0.40.161 > tmpknownhosts           
+    
       - name: Push website to server
         run: |
           scp -o UserKnownHostsFile=tmpknownhosts documentation.pdf fhvdevops@10.0.40.161:/var/www/html/2/          
