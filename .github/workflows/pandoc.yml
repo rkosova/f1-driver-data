@@ -22,5 +22,5 @@ jobs:
     
       - name: Push website to server
         run: |
-          scp -o UserKnownHostsFile=tmpknownhosts documentation.pdf fhvdevops@10.0.40.161:/var/www/html/2/          
+          scp -o UserKnownHostsFile=tmpknownhosts documentation.pdf fhvdevops@10.0.40.161:/var/www/html/2/documentation.pdf          
           rm tmpknownhosts
